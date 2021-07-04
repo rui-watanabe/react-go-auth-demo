@@ -1,13 +1,14 @@
 package main
 
-import fiber "github.com/gofiber/fiber/v2"
+import (
+	fiber "github.com/gofiber/fiber/v2"
+	"react-go-auth/database"
+	"react-go-auth/routes"
+)
 
 func main() {
+	database.Connect()
 	app := fiber.New()
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World 👋!")
-	})
-
+	routes.Setup(app)
 	app.Listen(":3000")
 }
