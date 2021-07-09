@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"react-go-auth/database"
 	"react-go-auth/models"
 
 	"github.com/gofiber/fiber/v2"
@@ -21,6 +22,8 @@ func Register(c *fiber.Ctx) error {
 		Email:    data["email"],
 		Password: password,
 	}
+
+	database.DB.Create(&user)
 
 	fmt.Println(user)
 	return c.JSON(data)
